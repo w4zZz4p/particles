@@ -1,2 +1,2 @@
-# particles
-HTML Canvas experiment
+# Particles
+Simple physics experiments.

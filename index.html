@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Particles</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                background: #000;
+            }
+
+            #canvas {
+                width: 100%;
+                height: 100%;
+                background: #333;
+            }
+
+            div {
+                position: absolute;
+                width: 500px;
+                height: 500px;
+                top: 50%;
+                left: 50%;
+                margin-left: -250px;
+                margin-top: -250px;
+            }
+            span {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <span id="cnt"></span>
+        <div id="container">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <script src="animation.js"></script>
+        <script src="canvas.js"></script>
+        <script src="paper.js"></script>
+        <script src="bounds.js"></script>
+        <script src="pattern.js"></script>
+        <script src="particle.js"></script>
+        <script src="vector.js"></script>
+        <script src="physics.js"></script>
+        <script>
+            /* global Animation,Vector,Pattern,Bounds,Canvas */
+
+            var vectors0 = []
+            vectors0.push(new Vector(10,10));
+            vectors0.push(new Vector(490,10));
+            vectors0.push(new Vector(490,490));
+            vectors0.push(new Vector(10,490));
+            vectors0.push(vectors0[0]);
+
+            var vectors1 = []
+            for (var i = 0, n = 3; i < n; i++) {
+                var x = Math.round( ( Math.sin( i / n * 2 * Math.PI ) * 100 ) + 150 );
+                var y = Math.round( ( Math.cos( i / n * 2 * Math.PI ) * 100 ) + 150 );
+                vectors1.push(new Vector(x, y));
+            }
+            vectors1.push(vectors1[0]);
+
+
+            var vectors2 = []
+            for (var i = 0, n = 8; i < n; i++) {
+                var x = Math.round( ( Math.sin( i / n * 2 * Math.PI ) * 100 ) + 350 );
+                var y = Math.round( ( Math.cos( i / n * 2 * Math.PI ) * 100 ) + 150 );
+                vectors2.push(new Vector(x, y));
+            }
+            vectors2.push(vectors2[0]);
+
+
+            var vectors3 = []
+            for (var i = 0, n = 20; i < n; i++) {
+                var x = Math.round( ( Math.sin( i / n * 2 * Math.PI ) * 100 ) + 250 );
+                var y = Math.round( ( Math.cos( i / n * 2 * Math.PI ) * 100 ) + 350 );
+                vectors3.push(new Vector(x, y));
+            }
+            vectors3.push(vectors3[0]);
+
+            var animation = new Animation(
+                new Canvas('canvas',
+                    new Bounds(vectors0, vectors1, vectors2, vectors3),
+                    new Pattern()
+                )
+            );
+            animation.run();
+        </script>
+    </body>
+</html>
